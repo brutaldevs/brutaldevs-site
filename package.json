@@ -1,0 +1,36 @@
+{
+  "name": "brutaldevs-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.24.0"
+    }
+  },
+  "dependencies": {
+    "@ai-sdk/groq": "1",
+    "@astrojs/react": "4",
+    "@astrojs/tailwind": "5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "ai": "4",
+    "astro": "5",
+    "framer-motion": "11",
+    "noise-gradient-bg": "1",
+    "react": "18",
+    "react-dom": "18",
+    "react-markdown": "9",
+    "tailwindcss": "3"
+  }
+}
