@@ -7,8 +7,8 @@ export interface Props {
 }
 
 const { 
-  title = "BrutalDevs | Ingeniería de Software", 
-  description = "Arquitectura digital. Sistemas construidos con intención. SEO técnico y rendimiento extremo."
+  title = "BrutalDevs | Desarrollo Web en Managua y Nicaragua", 
+  description = "Agencia de desarrollo web en Managua, Nicaragua. Especialistas en arquitectura digital, SEO técnico y rendimiento extremo para empresas que buscan escalar."
 } = Astro.props;
 
 const siteURL = Astro.site || 'https://brutaldevs.com';
@@ -16,11 +16,26 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL);
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   "name": "BrutalDevs",
   "url": "https://brutaldevs.com",
   "logo": "https://brutaldevs.com/favicon.svg",
-  "description": description
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Managua",
+    "addressRegion": "Managua",
+    "addressCountry": "NI"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Nicaragua"
+  },
+  "priceRange": "$$$",
+  "sameAs": [
+    "https://github.com/brutaldevs",
+    "https://twitter.com/brutaldevs"
+  ]
 };
 ---
 <!DOCTYPE html>

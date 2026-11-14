@@ -143,8 +143,8 @@ export default function HeroLamp() {
 
         <div className="relative z-10 mt-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-t border-neutral-800 pt-8">
           <p className="max-w-md text-lg text-neutral-400 font-mono leading-relaxed">
-            Construimos sistemas que no se improvisan.<br />
-            <span className="text-neutral-600">Arquitectura digital. Ingeniería de software.</span>
+            Agencia de desarrollo web en <strong className="text-[#ecebe6]">Managua, Nicaragua</strong>.<br />
+            <span className="text-neutral-600">Sistemas que no se improvisan. Arquitectura digital y rendimiento extremo.</span>
           </p>
           <a
             href="#contacto"
