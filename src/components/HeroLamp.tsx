@@ -10,6 +10,7 @@ export default function HeroLamp() {
   const [states, setStates] = useState<State[]>(Array(TOTAL).fill('off'));
   const [hot, setHot] = useState<Record<number, boolean>>({});
   const [bgVisible, setBgVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const stageRef = useRef<HTMLDivElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -46,6 +47,21 @@ export default function HeroLamp() {
     runSequence();
     return clearTimers;
   }, [runSequence]);
+
+  // Parallax del fondo al scrollear
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const onMove = (e: React.PointerEvent) => {
     if (e.pointerType !== 'mouse' || !stageRef.current) return;
@@ -124,6 +140,7 @@ export default function HeroLamp() {
           className={`absolute inset-0 flex items-center justify-center pointer-events-none z-0 transition-opacity ease-out ${
             bgVisible ? 'opacity-[0.08] duration-[1800ms]' : 'opacity-0 duration-300'
           }`}
+          style={{ transform: `translate3d(0, ${scrollY * 0.2}px, 0)`, willChange: 'transform' }}
         >
           <img
             src="/logo.svg"

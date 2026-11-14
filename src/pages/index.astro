@@ -3,78 +3,99 @@ import Layout from '../layouts/Layout.astro';
 import HeroLamp from '../components/HeroLamp';
 import ContactForm from '../components/ContactForm';
 import ParallaxSection from '../components/ParallaxSection';
+import Reveal from '../components/Reveal';
 ---
 <Layout>
   <HeroLamp client:load />
 
-  <ParallaxSection client:visible>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div>
-        <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">01 / Desarrollo Web</span>
-        <h2 class="mt-4 text-2xl font-bold text-[#ecebe6]">Desarrollo Web en Managua</h2>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">
-          Creamos sitios y aplicaciones web a medida para empresas en Nicaragua. Código limpio, escalable y optimizado para los motores de búsqueda.
-        </p>
-      </div>
-      <div>
-        <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">02 / SEO Técnico</span>
-        <h2 class="mt-4 text-2xl font-bold text-[#ecebe6]">Posicionamiento Orgánico</h2>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">
-          Optimizamos tu web para que aparezca en los primeros resultados de Google y motores de búsqueda con IA. Enfocados en velocidad y Core Web Vitals.
-        </p>
-      </div>
-      <div>
-        <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">03 / Arquitectura Digital</span>
-        <h2 class="mt-4 text-2xl font-bold text-[#ecebe6]">Sistemas Robustos</h2>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">
-          Diseñamos la infraestructura digital de tu negocio para soportar altos volúmenes de tráfico sin sacrificar la experiencia de usuario.
-        </p>
-      </div>
+  <!-- BLOQUE 2: SERVICIOS -->
+  <ParallaxSection client:load>
+    <Reveal>
+      <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">01 / SERVICIOS</span>
+      <h2 class="mt-6 font-sans font-black text-[clamp(40px,6vw,80px)] leading-[0.95] tracking-tight text-[#ecebe6]">
+        Lo que<br />
+        <span class="text-neutral-500">construimos.</span>
+      </h2>
+    </Reveal>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <Reveal delay={0.15}>
+        <h3 class="text-xl font-bold text-[#ecebe6]">Desarrollo Web en Managua</h3>
+        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Creamos sitios y aplicaciones web a medida para empresas en Nicaragua. Código limpio, escalable y optimizado para los motores de búsqueda.</p>
+      </Reveal>
+      <Reveal delay={0.3}>
+        <h3 class="text-xl font-bold text-[#ecebe6]">SEO Técnico</h3>
+        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Optimizamos tu web para que aparezca en los primeros resultados de Google y motores de búsqueda con IA. Enfocados en velocidad y Core Web Vitals.</p>
+      </Reveal>
+      <Reveal delay={0.45}>
+        <h3 class="text-xl font-bold text-[#ecebe6]">Arquitectura Digital</h3>
+        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Diseñamos la infraestructura digital de tu negocio para soportar altos volúmenes de tráfico sin sacrificar la experiencia de usuario.</p>
+      </Reveal>
     </div>
   </ParallaxSection>
 
-  <ParallaxSection client:visible>
-    <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">BD—003 / Preguntas Frecuentes</span>
-    <h2 class="mt-6 font-sans font-black text-[clamp(40px,6vw,80px)] leading-[0.95] tracking-tight text-[#ecebe6]">
-      Dudas sobre<br />
-      <span class="text-neutral-500">desarrollo web.</span>
-    </h2>
-    
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div>
-        <h3 class="text-lg font-bold text-[#ecebe6]">¿Cuánto cuesta una página web en Managua?</h3>
-        <p class="mt-2 text-neutral-400 font-mono text-sm leading-relaxed">El costo depende de la complejidad. Una landing page optimizada ronda los $X, mientras que una plataforma e-commerce puede superar los $Y. Contáctanos para una cotización exacta.</p>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-[#ecebe6]">¿Cuánto tiempo tarda en estar lista mi web?</h3>
-        <p class="mt-2 text-neutral-400 font-mono text-sm leading-relaxed">Un sitio corporativo estándar toma entre 4 y 6 semanas. Proyectos más complejos, como aplicaciones web a medida, se planifican en fases de 2 a 4 meses.</p>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-[#ecebe6]">¿Trabajan con empresas fuera de Nicaragua?</h3>
-        <p class="mt-2 text-neutral-400 font-mono text-sm leading-relaxed">Sí. Aunque nuestra base está en Managua, trabajamos de forma remota con clientes en toda Latinoamérica y Estados Unidos.</p>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-[#ecebe6]">¿Qué incluye el SEO técnico?</h3>
-        <p class="mt-2 text-neutral-400 font-mono text-sm leading-relaxed">Incluye auditoría de velocidad, optimización de Core Web Vitals, estructura de datos JSON-LD, sitemaps, robots.txt y arquitectura de enlazado interno.</p>
-      </div>
-    </div>
-  </ParallaxSection>
-
-  <ParallaxSection client:visible id="contacto">
+  <!-- BLOQUE 3: FORMULARIO -->
+  <ParallaxSection client:load id="contacto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-      <div>
-        <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">BD—002 / Project Inquiry</span>
+      <Reveal>
+        <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">02 / PROJECT INQUIRY</span>
         <h2 class="mt-6 font-sans font-black text-[clamp(40px,6vw,80px)] leading-[0.95] tracking-tight text-[#ecebe6]">
-          Hablemos de<br />
-          <span class="text-neutral-500">tu proyecto.</span>
+          Hablemos de<br /><span class="text-neutral-500">tu proyecto.</span>
         </h2>
-        <p class="mt-8 text-neutral-400 font-mono text-sm leading-relaxed max-w-md">
-          Si tienes una idea, un producto o un sistema por desarrollar, podemos comenzar a conversar. Respondemos en menos de 24 horas.
-        </p>
-      </div>
-      <div class="flex items-start justify-start md:justify-end">
-        <ContactForm client:visible />
-      </div>
+        <p class="mt-8 text-neutral-400 font-mono text-sm leading-relaxed max-w-md">Si tienes una idea, un producto o un sistema por desarrollar, podemos comenzar a conversar. Respondemos en menos de 24 horas.</p>
+      </Reveal>
+      <Reveal delay={0.2} className="flex items-start justify-start md:justify-end">
+        <ContactForm client:load />
+      </Reveal>
+    </div>
+  </ParallaxSection>
+
+  <!-- BLOQUE 4: FAQ -->
+  <ParallaxSection client:load>
+    <Reveal>
+      <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">03 / PREGUNTAS FRECUENTES</span>
+      <h2 class="mt-6 font-sans font-black text-[clamp(40px,6vw,80px)] leading-[0.95] tracking-tight text-[#ecebe6]">
+        Dudas<br /><span class="text-neutral-500">comunes.</span>
+      </h2>
+    </Reveal>
+
+    <div class="mt-12 flex flex-col border-t border-neutral-800">
+      <Reveal>
+        <details class="group border-b border-neutral-800 py-6 cursor-pointer">
+          <summary class="flex justify-between items-center list-none text-lg font-bold text-[#ecebe6] outline-none">
+            ¿Cuánto cuesta una página web en Managua?
+            <span class="transition-transform duration-300 group-open:rotate-45 text-neutral-500 text-2xl leading-none">+</span>
+          </summary>
+          <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed max-w-3xl">El costo depende de la complejidad. Una landing page optimizada ronda los $X, mientras que una plataforma e-commerce puede superar los $Y. Contáctanos para una cotización exacta.</p>
+        </details>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <details class="group border-b border-neutral-800 py-6 cursor-pointer">
+          <summary class="flex justify-between items-center list-none text-lg font-bold text-[#ecebe6] outline-none">
+            ¿Cuánto tiempo tarda en estar lista mi web?
+            <span class="transition-transform duration-300 group-open:rotate-45 text-neutral-500 text-2xl leading-none">+</span>
+          </summary>
+          <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed max-w-3xl">Un sitio corporativo estándar toma entre 4 y 6 semanas. Proyectos más complejos, como aplicaciones web a medida, se planifican en fases de 2 a 4 meses.</p>
+        </details>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <details class="group border-b border-neutral-800 py-6 cursor-pointer">
+          <summary class="flex justify-between items-center list-none text-lg font-bold text-[#ecebe6] outline-none">
+            ¿Trabajan con empresas fuera de Nicaragua?
+            <span class="transition-transform duration-300 group-open:rotate-45 text-neutral-500 text-2xl leading-none">+</span>
+          </summary>
+          <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed max-w-3xl">Sí. Aunque nuestra base está en Managua, trabajamos de forma remota con clientes en toda Latinoamérica y Estados Unidos.</p>
+        </details>
+      </Reveal>
+      <Reveal delay={0.3}>
+        <details class="group border-b border-neutral-800 py-6 cursor-pointer">
+          <summary class="flex justify-between items-center list-none text-lg font-bold text-[#ecebe6] outline-none">
+            ¿Qué incluye el SEO técnico?
+            <span class="transition-transform duration-300 group-open:rotate-45 text-neutral-500 text-2xl leading-none">+</span>
+          </summary>
+          <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed max-w-3xl">Incluye auditoría de velocidad, optimización de Core Web Vitals, estructura de datos JSON-LD, sitemaps, robots.txt y arquitectura de enlazado interno.</p>
+        </details>
+      </Reveal>
     </div>
   </ParallaxSection>
 </Layout>
