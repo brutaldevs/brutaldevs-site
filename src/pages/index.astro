@@ -2,39 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import HeroLamp from '../components/HeroLamp';
 import ContactForm from '../components/ContactForm';
+import ServicesCarousel from '../components/ServicesCarousel.astro';
 import ParallaxSection from '../components/ParallaxSection';
 import Reveal from '../components/Reveal';
 ---
 <Layout>
   <HeroLamp client:load />
-
-  <!-- BLOQUE 2: SERVICIOS -->
-  <ParallaxSection client:load>
-    <Reveal>
-      <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">01 / SERVICIOS</span>
-      <h2 class="mt-6 font-sans font-black text-[clamp(40px,6vw,80px)] leading-[0.95] tracking-tight text-[#ecebe6]">
-        Lo que<br />
-        <span class="text-neutral-500">construimos.</span>
-      </h2>
-    </Reveal>
-
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
-      <Reveal delay={0.15}>
-        <h3 class="text-xl font-bold text-[#ecebe6]">Desarrollo Web en Managua</h3>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Creamos sitios y aplicaciones web a medida para empresas en Nicaragua. Código limpio, escalable y optimizado para los motores de búsqueda.</p>
-      </Reveal>
-      <Reveal delay={0.3}>
-        <h3 class="text-xl font-bold text-[#ecebe6]">SEO Técnico</h3>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Optimizamos tu web para que aparezca en los primeros resultados de Google y motores de búsqueda con IA. Enfocados en velocidad y Core Web Vitals.</p>
-      </Reveal>
-      <Reveal delay={0.45}>
-        <h3 class="text-xl font-bold text-[#ecebe6]">Arquitectura Digital</h3>
-        <p class="mt-4 text-neutral-400 font-mono text-sm leading-relaxed">Diseñamos la infraestructura digital de tu negocio para soportar altos volúmenes de tráfico sin sacrificar la experiencia de usuario.</p>
-      </Reveal>
-    </div>
-  </ParallaxSection>
-
-  <!-- BLOQUE 3: FORMULARIO -->
+  <ServicesCarousel />
   <ParallaxSection client:load id="contacto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
       <Reveal>
@@ -49,8 +23,6 @@ import Reveal from '../components/Reveal';
       </Reveal>
     </div>
   </ParallaxSection>
-
-  <!-- BLOQUE 4: FAQ -->
   <ParallaxSection client:load>
     <Reveal>
       <span class="text-xs font-mono tracking-widest text-neutral-500 uppercase">03 / PREGUNTAS FRECUENTES</span>
@@ -58,7 +30,6 @@ import Reveal from '../components/Reveal';
         Dudas<br /><span class="text-neutral-500">comunes.</span>
       </h2>
     </Reveal>
-
     <div class="mt-12 flex flex-col border-t border-neutral-800">
       <Reveal>
         <details class="group border-b border-neutral-800 py-6 cursor-pointer">

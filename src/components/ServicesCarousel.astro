@@ -1,0 +1,364 @@
+---
+const services = [
+  { num: '01', title: 'Páginas web y sistemas a la medida', lead: 'Tu sitio, tienda en línea o sistema, rápido y claro.', pain: '¿Tu web es lenta o confusa? Los clientes se van. Hacemos sitios que cargan rápido en el celular y convierten visitas en mensajes.', service: 'Páginas web y sistemas a la medida' },
+  { num: '02', title: 'Optimización web (SEO)', lead: 'Que te encuentren antes que a tu competencia.', pain: 'Si no apareces cuando buscan lo que vendes, otro se lleva al cliente. Ordenamos tu arquitectura web para que Google te muestre primero en Nicaragua.', service: 'Optimización web (SEO)' },
+  { num: '03', title: 'Marketing digital y publicidad', lead: 'Publicidad que lleva clientes a tu WhatsApp.', pain: 'Deja de pagar anuncios que no venden. Conectamos tu publicidad con una página rápida que convierte visitas en mensajes reales.', service: 'Marketing digital y publicidad' },
+  { num: '04', title: 'Soluciones a la medida', lead: 'Sistemas que trabajan por ti, no al revés.', pain: '¿Pierdes horas en tareas manuales o en Excel? Creamos soluciones de software y automatización para que tu operación sea más rentable.', service: 'Soluciones a la medida' },
+  { num: '05', title: 'Mantenimiento y soporte técnico', lead: 'Tu web siempre rápida, segura y actualizada.', pain: 'Tu sitio no puede quedarse atrás. Actualizaciones, respaldos y mejoras continuas para que tu negocio nunca se detenga.', service: 'Mantenimiento y soporte técnico' },
+];
+---
+<section id="servicios" class="services" aria-labelledby="services-title">
+  <div class="services__header">
+    <span class="services__tag">01 / SERVICIOS</span>
+    <h2 id="services-title" class="services__title">
+      Lo que hacemos<br />
+      <span class="services__title-muted">por tu negocio.</span>
+    </h2>
+  </div>
+
+  <div class="viewport" id="viewport">
+    <div class="stage" id="stage">
+      <div class="track" id="track">
+        {services.map((s, i) => (
+          <article class="card" data-index={i} style={`--i: ${i}`} role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${services.length}`}>
+            <div class="card__body">
+              <div class="card__num">{s.num}</div>
+              <h3 class="card__title">{s.title}</h3>
+              <p class="card__lead">{s.lead}</p>
+              <p class="card__pain">{s.pain}</p>
+            </div>
+            <button type="button" class="card__quote" data-service={s.service}>
+              <span>Cotizar esto</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">Desliza para girar</p>
+  <div class="controls">
+    <button type="button" class="arrow" id="prevBtn" aria-label="Servicio anterior">←</button>
+    <div class="track-nav" id="trackNav"></div>
+    <button type="button" class="arrow" id="nextBtn" aria-label="Servicio siguiente">→</button>
+  </div>
+</section>
+
+<style>
+  .services {
+    border-top: 1px solid #262626;
+    padding: 5rem 1.5rem 6rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .services { padding: 6.5rem 1.5rem 7rem; } }
+
+  .services__tag {
+    font: 500 0.75rem/1.4 'JetBrains Mono', monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #737373;
+  }
+  .services__title {
+    margin: 0.75rem 0 2.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    font-size: clamp(2.25rem, 7vw, 3.75rem);
+    color: #ecebe6;
+  }
+  .services__title-muted { color: #737373; display: block; }
+
+  .viewport {
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: visible;
+    max-width: 56rem;
+    margin: 0 auto;
+    cursor: grab;
+  }
+  .viewport:active { cursor: grabbing; }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    transform-style: preserve-3d;
+  }
+  @media (min-width: 768px) { .stage { height: 440px; } }
+
+  .track {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    transform: rotateY(var(--rotation, 0deg));
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .card {
+    position: absolute;
+    width: 250px;
+    height: 360px;
+    margin: -180px 0 0 -125px;
+    background: #0d0d0d;
+    border: 1px solid #383838;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    outline: none;
+    touch-action: pan-y;
+    transform: rotateY(calc(var(--i) * 72deg)) translateZ(300px);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  @media (min-width: 480px) { .card { width: 260px; height: 376px; margin: -188px 0 0 -130px; transform: rotateY(calc(var(--i) * 72deg)) translateZ(340px); } }
+  @media (min-width: 768px) { .card { width: 292px; height: 392px; margin: -196px 0 0 -146px; transform: rotateY(calc(var(--i) * 72deg)) translateZ(420px); } }
+
+  .card.is-active {
+    border-color: #fff;
+    background: #101010;
+    z-index: 30;
+  }
+
+  .card__num { font-family: 'JetBrains Mono', monospace; font-size: 1.75rem; font-weight: 400; color: #ecebe6; margin-bottom: 0.6rem; }
+  .card__title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; line-height: 1.15; letter-spacing: -0.02em; color: #ecebe6; margin-bottom: 0.75rem; }
+  .card__lead { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.55; color: #d4d4d4; margin-bottom: 0.6rem; }
+  .card__pain { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; line-height: 1.55; color: #8a8a8a; }
+
+  .card:not(.is-active) .card__num { color: #7a7a7a; }
+  .card:not(.is-active) .card__title { color: #d0d0d0; }
+  .card:not(.is-active) .card__lead { color: #a8a8a8; }
+  .card:not(.is-active) .card__pain { color: #8f8f8f; }
+  .card:not(.is-active) .card__quote { opacity: 0; pointer-events: none; }
+
+  .card__quote {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #fff;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .hint {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #737373;
+    margin-top: 1.25rem;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+  .arrow {
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 1px solid #383838;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+  }
+  .arrow:hover { border-color: #fff; }
+  .arrow:active { background: #fff; color: #0a0a0a; }
+
+  .track-nav {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .node {
+    width: 32px;
+    height: 32px;
+    background: #0a0a0a;
+    border: 1px solid #383838;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #737373;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .node:hover { border-color: #fff; color: #fff; }
+  .node[aria-current="true"] { background: #fff; border-color: #fff; color: #0a0a0a; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track, .card { transition: none !important; }
+  }
+</style>
+
+<script>
+(() => {
+  const viewport = document.getElementById('viewport');
+  const track = document.getElementById('track');
+  const cards = Array.from(track.querySelectorAll('.card'));
+  const total = cards.length;
+  if (total === 0) return;
+
+  const angleStep = 360 / total;
+  let currentRotation = 0;
+  let activeIndex = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startRotation = 0;
+  let lastX = 0;
+  let velocity = 0;
+  let raf = null;
+  let pointerId = null;
+
+  const navContainer = document.getElementById('trackNav');
+  const nodes = cards.map((_, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'node';
+    btn.textContent = String(i + 1).padStart(2, '0');
+    btn.setAttribute('aria-label', `Ir al servicio ${i + 1}`);
+    btn.addEventListener('click', () => goTo(i));
+    navContainer.appendChild(btn);
+    return btn;
+  });
+
+  function updateActive() {
+    const normalized = ((currentRotation % 360) + 360) % 360;
+    const index = Math.round(normalized / angleStep) % total;
+    activeIndex = index;
+
+    cards.forEach((card, i) => {
+      card.classList.toggle('is-active', i === activeIndex);
+    });
+    nodes.forEach((n, i) => {
+      n.setAttribute('aria-current', i === activeIndex ? 'true' : 'false');
+    });
+  }
+
+  function applyRotation() {
+    track.style.setProperty('--rotation', `${currentRotation}deg`);
+    updateActive();
+  }
+
+  function goTo(index) {
+    const targetRotation = -index * angleStep;
+    const diff = targetRotation - currentRotation;
+    const normalizedDiff = ((diff % 360) + 540) % 360 - 180;
+    currentRotation += normalizedDiff;
+    applyRotation();
+  }
+
+  function animate() {
+    if (Math.abs(velocity) > 0.05 && !isDragging) {
+      currentRotation += velocity;
+      velocity *= 0.94;
+      applyRotation();
+      raf = requestAnimationFrame(animate);
+    } else {
+      velocity = 0;
+      const snapped = Math.round(currentRotation / angleStep) * angleStep;
+      const diff = snapped - currentRotation;
+      if (Math.abs(diff) > 0.1) {
+        currentRotation += diff * 0.2;
+        applyRotation();
+        raf = requestAnimationFrame(animate);
+      } else {
+        currentRotation = snapped;
+        applyRotation();
+        raf = null;
+      }
+    }
+  }
+
+  function startAnimate() {
+    if (!raf) raf = requestAnimationFrame(animate);
+  }
+
+  viewport.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button')) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+
+    isDragging = true;
+    startX = e.clientX;
+    startRotation = currentRotation;
+    lastX = e.clientX;
+    velocity = 0;
+    pointerId = e.pointerId;
+    track.style.transition = 'none';
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging || e.pointerId !== pointerId) return;
+    const dx = e.clientX - startX;
+    const sensitivity = 0.35;
+    currentRotation = startRotation + dx * sensitivity;
+    const deltaX = e.clientX - lastX;
+    velocity = deltaX * sensitivity * 0.9;
+    lastX = e.clientX;
+    applyRotation();
+  });
+
+  window.addEventListener('pointerup', (e) => {
+    if (!isDragging || e.pointerId !== pointerId) return;
+    isDragging = false;
+    pointerId = null;
+    track.style.transition = 'transform 0.35s cubic-bezier(0.2, 0, 0.2, 1)';
+    startAnimate();
+  });
+
+  window.addEventListener('pointercancel', () => {
+    if (isDragging) {
+      isDragging = false;
+      pointerId = null;
+      track.style.transition = 'transform 0.35s cubic-bezier(0.2, 0, 0.2, 1)';
+      startAnimate();
+    }
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo((activeIndex - 1 + total) % total));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo((activeIndex + 1) % total));
+
+  viewport.tabIndex = 0;
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo((activeIndex + 1) % total); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo((activeIndex - 1 + total) % total); }
+  });
+
+  Array.from(document.querySelectorAll('.card__quote')).forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const service = btn.getAttribute('data-service');
+      window.dispatchEvent(new CustomEvent('select-service', { detail: service }));
+      const contact = document.getElementById('contacto');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  applyRotation();
+})();
+</script>
